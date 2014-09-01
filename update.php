@@ -1,5 +1,5 @@
 <?php
-define("ZDAPIKEY", "admin001");
+define("ZDAPIKEY", "REDACTED");
 define("ZDUSER", "mark.fado@gmail.com");
 define("ZDURL", "https://topper.zendesk.com/api/v2");
 
