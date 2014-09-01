@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html>
+<head>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+		.centered_div {
+        margin: 0 auto 20px;	
+        width:500px;	
+		}
+		
+
+    </style>
+</head>
+<body>
+ <div class="container">
+ <div class="centered_div">
+ <div id="el">0</div>
+</div>
+</div>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+function incrementTickets(start,end,duration) {
+	$({someValue: start}).animate({someValue: end}, {
+		duration: duration,
+		easing:'swing',
+		step: function() {
+			$('#el').text(commaSeparateNumber(Math.round(this.someValue)));
+		}
+	});
+}
+
+function commaSeparateNumber(val){
+	while (/(\d+)(\d{3})/.test(val.toString())){
+		val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+	}
+	return val;
+}
+  
+function update(){
+    $.ajax({
+        url: 'update.php',
+        dataType: 'text',
+        success: function(data) {
+		incrementTickets($('#el').text(),data,1000);
+		//console.log(data);
+        }
+     });
+}
+var int = self.setInterval("update()", 5000); 
+</script>
+</body>
+</html>
+
+
