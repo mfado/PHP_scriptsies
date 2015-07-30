@@ -40,7 +40,7 @@ function curlWrap($url, $json, $action)
 	return $decoded;
 }
 
-$data=curlWrap("/search.json?query=type:ticket",null,"GET");
+$data=curlWrap("/1search.json?query=type:ticket",null,"GET");
 
 //print_r($data);
 
